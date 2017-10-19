@@ -1,0 +1,13 @@
+import sqlite3
+conn = sqlite3.connect('LeVinEmployee.db')
+with conn:
+    cur = conn.cursor()
+    try:
+        cur.execute("SEECT * FROM Employee")
+        results = cur.fetchall()
+        rowCounter = 0
+        for row in results:
+            print(row)
+            rowCounter +=1
+    except:
+        print ("Connection Failed")
