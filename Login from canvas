@@ -11,3 +11,15 @@ with conn:
             rowCounter +=1
     except:
         print ("Connection Failed")
+
+import sqlite3
+#create connection with database
+conn = sqlite3.connect('C:/Users/Michael/PycharmProjects/bus110project/LeVinEmployee.db')
+with conn:
+    #creating a cursor that will execute commands against the db
+    cur = conn.cursor()
+        #runs the SQL command and assigns the result of the command to a cursor object called cursor
+    cur.execute("SELECT * FROM Employee")
+
+    results = cur.fetchall()
+    print(results)
