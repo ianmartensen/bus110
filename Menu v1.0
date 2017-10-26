@@ -1,0 +1,117 @@
+import sqlite3
+conn = sqlite3.connect('LeVinEmployee.db')
+with conn:
+    cur = conn.cursor()
+    try:
+        cur.execute("SEECT * FROM Employee")
+        results = cur.fetchall()
+        rowCounter = 0
+        for row in results:
+            print(row)
+            rowCounter +=1
+    except:
+        print ("Connection Failed")
+
+import sqlite3
+
+# create connection with database
+conn = sqlite3.connect('C:/Users/Ian/Desktop/110aProject/LeVinEmployee.db')
+
+def login():
+    user_email = input("What is your Email? ")
+    
+    with conn:
+        # creating a cursor that will execute commands against the db
+        cur = conn.cursor()
+    
+        try:
+            # checks if "@" in user input
+            while "@" not in user_email:
+                user_email = input("Please enter a valid email address: ")
+                
+            cur.execute("SELECT Email FROM Employee WHERE (Email = '" + user_email + "')")
+            # runs the SQL command and assigns the result of the command to a cursor object email_info
+            email_Info = cur.fetchone()
+            # if any info retrieved then user entered email is in the database
+            if email_Info:
+                    print("CHECKPOINT")
+                    user_pass = input("What is your Password? ")
+                    # find password entered by user in dataBase
+                    cur.execute("SELECT Password FROM Employee WHERE (Email = '" + user_email + "')")
+                    pass_Info = cur.fetchone()
+                    # gets the first item in the list and assigns to pass_info
+                    pass_Info = pass_Info[0]
+                    print(pass_Info)
+                    
+                    while user_pass != pass_Info:
+                        user_pass = input("Password is incorrect, please try again: ")
+
+                        if user_pass == pass_Info:
+                            # Check if user entered password(user_pass) is the same as password in database(pass_info)
+                            # print email of User
+                            for row in email_Info:
+                                return print("Welcome " + row, end=' ')
+        
+                          
+        except ConnectionError:
+            return print("Connection Failed")
+        
+def register():
+    with conn:
+        cur = conn.cursor()
+        try:
+            empID = input("To register a new employee, first enter his or her EmployeeID: ")
+            stripEmpID = empID.strip()
+            while not len(stripEmpID) == 4 and stripEmpID.isdigit():
+                stripEmpID = ("EmployeeID cannot be blank. PLease provide a 4 digit EmployeeID: ")
+
+            with conn:
+
+                try:
+                    cur.execute("SELECT EmployeeID FROM Employee WHERE(EmployeeID ='" + stripEmpID + "')")
+                    checkEmpID = cur.fetchone()
+                    while checkEmpID:
+                        EmpID = input("That EmployeeID is already in use. Please enter a different EmployeeID: ")
+                        stripEmpID = EmpID.strip()
+                        cur.execute("SELECT EmployeeID FROM Employee WHERE(EmployeeID = '" + stripEmpID + "')")
+                        checkEmpID = cur.fetchone()
+                    print("EmployeeID, " + stripEmpID + ", is accepted")
+                    firstName     = input("\nWhat is your first name? ")
+                    lastName      = input("What is your last name? ")
+                    streetAddress = input("What is your street address? ")
+                    city          = input("What city do you live in? ")
+                    state         = input("What state do you live in? ")
+                    zipCode       = input("What is your zipcode? ")
+                    email         = input("What is your email? ")
+                    password      = input("What is your password? ")
+                    print("Thank you for completing the registration form.")
+                    
+                    menuOptions()
+
+                    cur.execute('''INSERT INTO Employee VALUES(?,?,?,?,?,?,?,?,?)''', (stripEmpID, firstName, lastName, streetAddress, city, state, zipCode, email, password))
+                    conn.commit()
+
+                except:
+                    print("Connection Failed")
+        except:
+            print("Connection Failed")
+            
+            
+def menuOptions():
+    
+    print("A) Login")
+    print("B) Not a member? Register Here.")
+    
+    menu_option = input("Please select an option to continue: ")
+    
+    if menu_option == "A":
+        login()
+    else:
+        register()
+
+if __name__== "__main__":
+    inp = input("Are you a registered user? ")
+    if "y" in inp:
+        login()
+    else:
+        register()
