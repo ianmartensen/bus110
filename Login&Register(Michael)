@@ -95,7 +95,7 @@ def menuOptions():
     print("C) Exit the program")
 
     menu_option = input("Please select an option to continue: ")
-    menu_option.lower()
+    menu_option = menu_option.lower()
 
     if menu_option == "a":
         login()
