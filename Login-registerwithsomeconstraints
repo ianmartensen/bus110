@@ -1,0 +1,111 @@
+import sqlite3
+
+# create connection with database
+conn = sqlite3.connect('/Users/nickgentry/Desktop/LevinProject/LeVinEmployee.db')
+
+def login():
+    user_email = input("What is your Email? ")
+    
+    with conn:
+        # creating a cursor that will execute commands against the db
+        cur = conn.cursor()
+    
+        try:
+            # checks if "@" in user input
+            while "@" not in user_email:
+                user_email = input("Please enter a valid email address: ")
+                
+            cur.execute("SELECT Email FROM Employee WHERE (Email = '" + user_email + "')")
+            # runs the SQL command and assigns the result of the command to a cursor object email_info
+            email_Info = cur.fetchone()
+            # if any info retrieved then user entered email is in the database
+            if email_Info:
+                    print("CHECKPOINT")
+                    user_pass = input("What is your Password? ")
+                    # find password entered by user in dataBase
+                    cur.execute("SELECT Password FROM Employee WHERE (Email = '" + user_email + "')")
+                    pass_Info = cur.fetchone()
+                    # gets the first item in the list and assigns to pass_info
+                    pass_Info = pass_Info[0]
+                    print(pass_Info)
+
+                    if user_pass == pass_Info:
+                        # Check if user entered password(user_pass) is the same as password in database(pass_info)
+                        # print email of User
+                        for row in email_Info:
+                            return print("Welcome " + row, end=' ')
+        
+                          
+        except ConnectionError:
+            return print("Connection Failed")
+
+        
+        
+def register():
+    with conn:
+        cur = conn.cursor()
+        try:
+            empID = input("To register a new employee, first enter his or her EmployeeID: ")
+            stripEmpID = empID.strip()
+            while not len(stripEmpID) == 4 and stripEmpID.isdigit():
+                stripEmpID = ("EmployeeID cannot be blank. PLease provide a 4 digit EmployeeID: ")
+
+            with conn:
+
+                try:
+                    cur.execute("SELECT EmployeeID FROM Employee WHERE(EmployeeID ='" + stripEmpID + "')")
+                    checkEmpID = cur.fetchone()
+                    while checkEmpID:
+                        EmpID = input("That EmployeeID is already in use. Please enter a different EmployeeID: ")
+                        stripEmpID = EmpID.strip()
+                        cur.execute("SELECT EmployeeID FROM Employee WHERE(EmployeeID = '" + stripEmpID + "')")
+                        checkEmpID = cur.fetchone()
+                    print("EmployeeID, " + stripEmpID + ", is accepted")
+                    firstName     = input("\n What is your first name? ")
+                    if firstName and firstName.isalpha():
+                        pass
+                    elif firstName and firstName.isdigit():
+                        print ("Name must be Alphabet characters only!")
+
+                    lastName      = input("What is your last name? ")
+                    if lastName and lastName.isalpha():
+                        pass
+                    elif lastName and lastName.isdigit():
+                        print ("Last name must be Alphabet characters only!")
+                    
+                    streetAddress = input("What is your street address? ")
+                    city          = input("What city do you live in? ")
+                    if city and city.isalpha():
+                        pass
+                    elif city and city.isdigit():
+                        print ("City must be Alphabet characters only!")
+                    
+                    state         = input("What state do you live in? ")
+                    if state and state.isalpha():
+                        pass
+                    elif state and state.isdigit():
+                        print ("State must be Alphabet characters only!")
+                    
+                    zipCode       = input("What is your zipcode? ")
+                    email         = input("What is your email? ")
+                    if "@" in email:
+                        pass
+                    elif "@" not in email:
+                        print ("Invalid email address")
+                            
+                    password      = input("What is your password? ")                    
+
+                    cur.execute('''INSERT INTO Employee VALUES(?,?,?,?,?,?,?,?,?)''', (stripEmpID, firstName, lastName, streetAddress, city, state, zipCode, email, password))
+                    conn.commit()
+
+                except:
+                    print("Connection Failed")
+        except:
+            print("Connection Failed")
+
+if __name__ == "__main__":
+    inp = input("Are you a registered user? ")
+    if "y" in inp:
+        login()
+    else:
+        register()
