@@ -74,6 +74,7 @@ def register():
                         print ("Last name must be Alphabet characters only!")
                     
                     streetAddress = input("What is your street address? ")
+                    
                     city          = input("What city do you live in? ")
                     if city and city.isalpha():
                         pass
@@ -87,6 +88,11 @@ def register():
                         print ("State must be Alphabet characters only!")
                     
                     zipCode       = input("What is your zipcode? ")
+                    if zipCode and zipCode.isnumeric() and len(zipCode) <5:
+                        pass
+                    else:
+                        print("Not a valide zipcode. Try again.")
+                        
                     email         = input("What is your email? ")
                     if "@" in email:
                         pass
