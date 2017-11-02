@@ -1,0 +1,76 @@
+import seaborn
+import pandas as pd
+import scipy.stats
+import matplotlib.pyplot as plt
+
+allWines = pd.read_csv('winequality-both.csv', sep=',',header=0)
+red = allWines.loc[allWines['type']=='red', :]
+white = allWines.loc[allWines['type']=='white', :]
+
+from pylab import savefig
+try:
+    WineCharX = "quality"
+    WineCharY = "volatile acidity"
+    allWines = pd.read_csv('winequality-both.csv')
+    getCorr = scipy.stats.pearsonr(white[WineCharX], white[WineCharY])
+    correlation = str(getCorr[0])
+    pValue = str(getCorr[1])
+    print("For white wine, the correlationbetween " + WineCharX + " and " + WineCharY + " is " + correlation)
+    print("With p value of: " + pValue)
+    
+    seaborn.lmplot(x=WineCharX, y=WineCharY, data=white)
+    plt.xlabel(WineCharX)
+    plt.ylabel(WineCharY)
+    plt.title("Red Wine: "+ WineCharX + " X " + WineCharY)
+    savefig("scatterplit1.png")
+except (KeyError) as e:
+    print ('Please check the spelling of the wine characteristics you want to test')
+    
+
+from pylab import savefig
+try:
+    WineCharX = "quality"
+    WineCharY = "volatile acidity"
+    allWines = pd.read_csv('winequality-both.csv')
+    red = allWines.loc[allWines['type']=='red', :]
+    getCorr =scipy.stats.pearsonr(red[WineCharX], red[WineCharY])
+    correlation = str(getCorr[0])
+    pValue = str(getCorr[1])
+    print("For red wine, the correlationbetween " + WineCharX + " and " + WineCharY + " is " + correlation)
+    print("With p value of: " + pValue)
+    
+    seaborn.lmplot(x=WineCharX, y=WineCharY, data=red)
+    plt.xlabel(WineCharX)
+    plt.ylabel(WineCharY)
+    plt.title("Red Wine: "+ WineCharX + " X " + WineCharY)
+    savefig("scatterplit1.png")
+except (KeyError) as e:
+    print ('Please check the spelling of the wine characteristics you want to test')
+
+
+ 
+    
+#==============================================================================
+# def menuOptions():
+#     print("\n \nA) Test for Volitile acidity and wine quality (Both Red and White Wines")
+#     print("B) Fixed Acidity and Wine Quality (Both Red and White Wine)")
+#     print("C) Alcohol Percet and Wine Quality (Both Red and White Wine)")
+#     print("D) Residual Sugar and Wine Quality (Both Red and White Wine)")
+# 
+#     menu_option = input("Please select an option to continue: ")
+#     menu_option = menu_option.lower()
+# 
+#     if menu_option == "a":
+#         WineQualityAndVolatileAcidity()
+#     elif menu_option == "b":
+#         exit()
+#     elif menu_option == "c":
+#         exit()
+#         
+# if __name__ == "__main__":
+#     online = False
+#     while not online:
+#         menuOptions()
+#     if online:
+#         print("CHECKPOINT")
+#==============================================================================
