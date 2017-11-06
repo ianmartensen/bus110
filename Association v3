@@ -178,7 +178,7 @@ def option_8():
 def menuOptions():
     print("\nA) Test Volitile acidity and Wine Quality for White Wine")
     print("\nB) Test Volitile acidity and Wine Quality for Red Wine")
-    print("\nC) Test Fixed Acidity and Wine Quality for Withe Wine")
+    print("\nC) Test Fixed Acidity and Wine Quality for White Wine")
     print("\nD) Test Fixed Acidity and Wine Quality for Red Wine")
     print("\nE) Test Alcohol and Wine Quality for White Wine")
     print("\nF) Test Alcohol and Wine Quality for Red Wine")
