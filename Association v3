@@ -1,0 +1,209 @@
+import seaborn
+import pandas as pd
+import scipy.stats
+import matplotlib.pyplot as plt
+
+allWines = pd.read_csv('winequality-both.csv', sep=',',header=0)
+red = allWines.loc[allWines['type']=='red', :]
+white = allWines.loc[allWines['type']=='white', :]
+
+from pylab import savefig
+
+def option_1():
+    try:
+        WineCharX = "quality"
+        WineCharY = "volatile acidity"
+        allWines = pd.read_csv('winequality-both.csv')
+        getCorr = scipy.stats.pearsonr(white[WineCharX], white[WineCharY])
+        correlation = str(getCorr[0])
+        pValue = str(getCorr[1])
+        print("For white wine, the correlationbetween " + WineCharX + " and " + WineCharY + " is " + correlation)
+        print("With p value of: " + pValue)
+        
+        seaborn.lmplot(x=WineCharX, y=WineCharY, data=white)
+        plt.xlabel(WineCharX)
+        plt.ylabel(WineCharY)
+        plt.title("Red Wine: "+ WineCharX + " X " + WineCharY)
+        savefig("scatterplit1.png")
+    except (KeyError) as e:
+        print ('Please check the spelling of the wine characteristics you want to test')
+    
+def option_2():
+
+    try:
+        WineCharX = "quality"
+        WineCharY = "volatile acidity"
+        allWines = pd.read_csv('winequality-both.csv')
+        red = allWines.loc[allWines['type']=='red', :]
+        getCorr =scipy.stats.pearsonr(red[WineCharX], red[WineCharY])
+        correlation = str(getCorr[0])
+        pValue = str(getCorr[1])
+        print("For red wine, the correlationbetween " + WineCharX + " and " + WineCharY + " is " + correlation)
+        print("With p value of: " + pValue)
+        
+        seaborn.lmplot(x=WineCharX, y=WineCharY, data=red)
+        plt.xlabel(WineCharX)
+        plt.ylabel(WineCharY)
+        plt.title("Red Wine: "+ WineCharX + " X " + WineCharY)
+        savefig("scatterplit1.png")
+    except (KeyError) as e:
+        print ('Please check the spelling of the wine characteristics you want to test')
+    
+def option_3():
+    
+    try:
+        WineCharX = "quality"
+        WineCharY = "fixed acidity"
+        allWines = pd.read_csv('winequality-both.csv')
+        white = allWines.loc[allWines['type']=='white', :]
+        getCorr =scipy.stats.pearsonr(white[WineCharX], white[WineCharY])
+        correlation = str(getCorr[0])
+        pValue = str(getCorr[1])
+        print("\nFor white wine, the correlation between " + WineCharX + " and " + WineCharY + " is " + correlation)
+        print("With p value of: " + pValue)
+        
+        seaborn.lmplot(x=WineCharX, y=WineCharY, data=white)
+        plt.xlabel(WineCharX)
+        plt.ylabel(WineCharY)
+        plt.title("White Wine: "+ WineCharX + " X " + WineCharY)
+        savefig("scatterplit1.png")
+    except (KeyError) as e:
+        print ('Please check the spelling of the wine characteristics you want to test')
+        
+def option_4():
+    
+    try:
+        WineCharX = "quality"
+        WineCharY = "fixed acidity"
+        allWines = pd.read_csv('winequality-both.csv')
+        red = allWines.loc[allWines['type']=='red', :]
+        getCorr =scipy.stats.pearsonr(red[WineCharX], red[WineCharY])
+        correlation = str(getCorr[0])
+        pValue = str(getCorr[1])
+        print("\nFor red wine, the correlation between " + WineCharX + " and " + WineCharY + " is " + correlation)
+        print("With p value of: " + pValue)
+        
+        seaborn.lmplot(x=WineCharX, y=WineCharY, data=red)
+        plt.xlabel(WineCharX)
+        plt.ylabel(WineCharY)
+        plt.title("Red Wine: "+ WineCharX + " X " + WineCharY)
+        savefig("scatterplit1.png")
+    except (KeyError) as e:
+        print ('Please check the spelling of the wine characteristics you want to test')
+        
+def option_5():
+    
+    try:
+        WineCharX = "quality"
+        WineCharY = "alcohol"
+        allWines = pd.read_csv('winequality-both.csv')
+        white = allWines.loc[allWines['type']=='white', :]
+        getCorr =scipy.stats.pearsonr(white[WineCharX], white[WineCharY])
+        correlation = str(getCorr[0])
+        pValue = str(getCorr[1])
+        print("\nFor white wine, the correlation between " + WineCharX + " and " + WineCharY + " is " + correlation)
+        print("With p value of: " + pValue)
+        
+        seaborn.lmplot(x=WineCharX, y=WineCharY, data=white)
+        plt.xlabel(WineCharX)
+        plt.ylabel(WineCharY)
+        plt.title("White Wine: "+ WineCharX + " X " + WineCharY)
+        savefig("scatterplit1.png")
+    except (KeyError) as e:
+        print ('Please check the spelling of the wine characteristics you want to test')
+        
+def option_6():
+    
+    try:
+        WineCharX = "quality"
+        WineCharY = "alcohol"
+        allWines = pd.read_csv('winequality-both.csv')
+        red = allWines.loc[allWines['type']=='red', :]
+        getCorr =scipy.stats.pearsonr(red[WineCharX], red[WineCharY])
+        correlation = str(getCorr[0])
+        pValue = str(getCorr[1])
+        print("\nFor red wine, the correlation between " + WineCharX + " and " + WineCharY + " is " + correlation)
+        print("With p value of: " + pValue)
+        
+        seaborn.lmplot(x=WineCharX, y=WineCharY, data=red)
+        plt.xlabel(WineCharX)
+        plt.ylabel(WineCharY)
+        plt.title("Red Wine: "+ WineCharX + " X " + WineCharY)
+        savefig("scatterplit1.png")
+    except (KeyError) as e:
+        print ('Please check the spelling of the wine characteristics you want to test')
+        
+def option_7():
+    
+    try:
+        WineCharX = "quality"
+        WineCharY = "residual sugar"
+        allWines = pd.read_csv('winequality-both.csv')
+        white = allWines.loc[allWines['type']=='white', :]
+        getCorr =scipy.stats.pearsonr(white[WineCharX], white[WineCharY])
+        correlation = str(getCorr[0])
+        pValue = str(getCorr[1])
+        print("\nFor white wine, the correlation between " + WineCharX + " and " + WineCharY + " is " + correlation)
+        print("With p value of: " + pValue)
+        
+        seaborn.lmplot(x=WineCharX, y=WineCharY, data=white)
+        plt.xlabel(WineCharX)
+        plt.ylabel(WineCharY)
+        plt.title("White Wine: "+ WineCharX + " X " + WineCharY)
+        savefig("scatterplit1.png")
+    except (KeyError) as e:
+        print ('Please check the spelling of the wine characteristics you want to test')
+        
+def option_8():
+    
+    try:
+        WineCharX = "quality"
+        WineCharY = "residual sugar"
+        allWines = pd.read_csv('winequality-both.csv')
+        red = allWines.loc[allWines['type']=='red', :]
+        getCorr =scipy.stats.pearsonr(red[WineCharX], red[WineCharY])
+        correlation = str(getCorr[0])
+        pValue = str(getCorr[1])
+        print("For red wine, the correlation between " + WineCharX + " and " + WineCharY + " is " + correlation)
+        print("With p value of: " + pValue)
+        
+        seaborn.lmplot(x=WineCharX, y=WineCharY, data=red)
+        plt.xlabel(WineCharX)
+        plt.ylabel(WineCharY)
+        plt.title("Red Wine: "+ WineCharX + " X " + WineCharY)
+        savefig("scatterplit1.png")
+    except (KeyError) as e:
+        print ('Please check the spelling of the wine characteristics you want to test')
+ 
+def menuOptions():
+    print("\nA) Test Volitile acidity and Wine Quality for White Wine")
+    print("\nB) Test Volitile acidity and Wine Quality for Red Wine")
+    print("\nC) Test Fixed Acidity and Wine Quality for Withe Wine")
+    print("\nD) Test Fixed Acidity and Wine Quality for Red Wine")
+    print("\nE) Test Alcohol and Wine Quality for White Wine")
+    print("\nF) Test Alcohol and Wine Quality for Red Wine")
+    print("\nG) Test Residual Sugar and Wine Quality for White Wine")
+    print("\nH) Test Residual Sugar and Wine Quality for Red Wine")
+ 
+    menu_option = input("\nPlease select an option to continue: ")
+    menu_option = menu_option.lower()
+ 
+    if menu_option == "a":
+        option_1()
+    if menu_option == "b":
+        option_2()
+    if menu_option == "c":
+        option_3()
+    if menu_option == "d":
+        option_4()
+    if menu_option == "e":
+        option_5()
+    if menu_option == "f":
+        option_6()
+    if menu_option == "g":
+        option_7()
+    if menu_option == "h":
+        option_8()
+    
+if __name__ == "__main__":
+     menuOptions()
