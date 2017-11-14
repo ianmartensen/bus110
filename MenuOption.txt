@@ -1,0 +1,23 @@
+-Would you like to Test Associations between variables and quality?
+	-WOuld you like to test associations between variables and quality for RED Wine?
+		- Test association between Volatile Acidity and Wine quality
+		- Test association between Fixed Acidity and Wine quality
+		- Test association between Alcohol percentage and Wine quality
+		- Test association between Residual Sugar and Wine quality
+	-WOuld you like to test associations between variables and quality for White Wine?
+		- Test association between Volatile Acidity and Wine quality
+		- Test association between Fixed Acidity and Wine quality
+		- Test association between Alcohol percentage and Wine quality
+		- Test association between Residual Sugar and Wine quality
+-WOuld you like to find the frequencies distributions of wine quality for different wine characteristics?
+	-Would you like to test frequency distributions for RED Wine?
+		-volatile acidity
+		-Fixed acidity
+		-ALcohol
+		-Residual Sugar
+	-Would you like to test frequency distributions for WHITE Wine?
+		-volatile acidity
+		-Fixed acidity
+		-Alcohol
+		-Residual Sugar
+ 
