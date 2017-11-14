@@ -1,0 +1,57 @@
+import pandas
+import matplotlib.pyplot as plt
+import seaborn
+
+def testOptionRed(WineCharTest):
+    try:
+        WineChar = WineCharTest
+        WineCharValue = int(input("Please input a value you would like to test for: "))
+        WineChar2 = "quality"
+        
+        allWines = pandas.read_csv('winequality-both.csv')
+        
+        red = allWines.loc[allWines['type']== 'red', :]
+        
+        RedResidualSugar = red.loc[red[WineChar]== WineCharValue,:]
+        
+        WineCharValueDataset = RedResidualSugar.loc[:,WineChar2]
+        
+        seaborn.distplot(WineCharValueDataset, bins = 10, kde=False)
+        
+        plt.title(WineChar + " value " + str(WineCharValue) + " frequencies by " + WineChar2)
+        
+        plt.ylabel('Number of Wines')
+        
+        plt.xticks([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    
+    except (KeyError, ZeroDivisionError) as e:
+        print (e)
+        
+def testOptionWhite(WineCharTest):
+    try:
+        WineChar = WineCharTest
+        WineCharValue = int(input("Please input a value you would like to test for: "))
+        WineChar2 = "quality"
+        
+        allWines = pandas.read_csv('winequality-both.csv')
+        
+        white = allWines.loc[allWines['type']== 'white', :]
+        
+        WhiteResidualSugar = white.loc[white[WineChar]== WineCharValue,:]
+        
+        WineCharValueDataset = WhiteResidualSugar.loc[:,WineChar2]
+        
+        seaborn.distplot(WineCharValueDataset, bins = 10, kde=False)
+        
+        plt.title(WineChar + " value " + str(WineCharValue) + " frequencies by " + WineChar2)
+        
+        plt.ylabel('Number of Wines')
+        
+        plt.xticks([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    
+    except (KeyError, ZeroDivisionError) as e:
+        print (e)
+        
+if __name__ == "__main__":
+     testOptionRed(WineCharTest = "alcohol")
+     testOptionWhite(WineCharTest = "alcohol")
