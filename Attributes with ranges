@@ -1,0 +1,231 @@
+import seaborn
+import pandas as pd
+import scipy.stats
+import matplotlib.pyplot as plt
+
+allWines = pd.read_csv('winequality-both.csv', sep=',', header=0)
+red = allWines.loc[allWines['type'] == 'red', :]
+white = allWines.loc[allWines['type'] == 'white', :]
+
+from pylab import savefig
+
+def AssociationWhite(charX, charY):
+ try:
+     WineCharX = charX
+     WineCharY = charY
+     allWines = pd.read_csv('winequality-both.csv')
+     # no white wine criteria
+     getCorr = scipy.stats.pearsonr(white[WineCharX], white[WineCharY])
+     correlation = str(getCorr[0])
+     pValue = str(getCorr[1])
+     print("For white wine, the correlation between " + WineCharX + " and " + WineCharY + " is " + correlation)
+     print("With p value of: " + pValue)
+ 
+     seaborn.lmplot(x=WineCharX, y=WineCharY, data=white)
+     plt.xlabel(WineCharX)
+     plt.ylabel(WineCharY)
+     plt.title("White Wine: " + WineCharX + " X " + WineCharY)
+     savefig("scatterplit1.png")
+ except (KeyError) as e:
+     print('Please check the spelling of the wine characteristics you want to test')
+ 
+def AssociationRed(charX, charY):
+  try:
+      WineCharX = charX
+      WineCharY = charY
+      allWines = pd.read_csv('winequality-both.csv')
+      red = allWines.loc[allWines['type'] == 'red', :]
+      getCorr = scipy.stats.pearsonr(red[WineCharX], red[WineCharY])
+      correlation = str(getCorr[0])
+      pValue = str(getCorr[1])
+      print("For red wine, the correlationbetween " + WineCharX + " and " + WineCharY + " is " + correlation)
+      print("With p value of: " + pValue)
+  
+      seaborn.lmplot(x=WineCharX, y=WineCharY, data=red)
+      plt.xlabel(WineCharX)
+      plt.ylabel(WineCharY)
+      plt.title("Red Wine: " + WineCharX + " X " + WineCharY)
+      savefig("scatterplit1.png")
+      plt.show()
+  except (KeyError) as e:
+      print('Please check the spelling of the wine characteristics you want to test')
+
+def testFreqRed(WineCharTest):
+    try:
+        WineChar = WineCharTest
+        WineCharValue = float(input("Please input a value you would like to test for: "))
+        WineChar2 = "quality"
+        
+        allWines = pd.read_csv('winequality-both.csv')
+        
+        red = allWines.loc[allWines['type']== 'red', :]
+        
+        RedResidualSugar = red.loc[red[WineChar]== WineCharValue,:]
+        
+        WineCharValueDataset = RedResidualSugar.loc[:,WineChar2]
+        
+        seaborn.distplot(WineCharValueDataset, bins = 10, kde=False)
+        
+        plt.title(WineChar.title() + " Value " + str(WineCharValue) + " Frequencies By " + WineChar2.title())
+        
+        plt.ylabel('Number of Wines')
+        
+        plt.xlabel("Quality \n\nLow = 1-3, Medium = 4-6, High = 7-10")
+        
+        plt.xticks([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        
+    
+    except (KeyError, ZeroDivisionError) as e:
+        print (e)
+        
+def testFreqWhite(WineCharTest):
+    try:
+        WineChar = WineCharTest
+        WineCharValue = float(input("Please input a value you would like to test for: "))
+        WineChar2 = "quality"
+        
+        allWines = pd.read_csv('winequality-both.csv')
+        
+        white = allWines.loc[allWines['type']== 'white', :]
+        
+        WhiteResidualSugar = white.loc[white[WineChar]== WineCharValue,:]
+        
+        WineCharValueDataset = WhiteResidualSugar.loc[:,WineChar2]
+        
+        seaborn.distplot(WineCharValueDataset, bins = 10, kde=False)
+        
+        plt.title(WineChar.title() + " Value " + str(WineCharValue) + " Frequencies By " + WineChar2.title())
+        
+        plt.ylabel('Number of Wines')
+        
+        plt.xlabel("Quality \n\nLow = 1-3, Medium = 4-6, High = 7-10")
+        
+        plt.xticks([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    
+    except (KeyError, ZeroDivisionError) as e:
+        print (e)
+        
+        
+def StartOptions():
+    
+    print("Would you like to test assosications or frequency distributions?")
+    print("\nA) Test associations")
+    print("\nB) Test Frequency distributions")
+    
+    menu_option1 = input("Please select an option to continue: ")
+    menu_option1 = menu_option1.lower()
+    
+    if menu_option1 == "a":
+        RedOrWhiteAss()
+    if menu_option1 == "b":
+        RedOrWhiteFreq()
+            
+#Red and White for Associations
+def RedOrWhiteAss():
+    print("A) Would you like to test for Red wine?")
+    print("B) Would you like to test for White wine?")
+    
+    menu_option2 = input("\nPlease select an option to continue: ")
+    menu_option2 = menu_option2.lower()
+    
+    if menu_option2 == "a":
+        AssRed()
+    if menu_option2 == "b":
+        AssWhite()
+        
+#Red and White for Frequency
+def RedOrWhiteFreq():
+    print("A) Would you like to test for Red wine?")
+    print("B) Would you like to test for White wine?")
+    
+    menu_option3 = input("\nPlease select an option to continue: ")
+    menu_option3 = menu_option3.lower()
+    
+    if menu_option3 == "a":
+        FreqRed()
+    if menu_option3 == "b":
+        FreqWhite()
+ 
+
+def AssWhite():
+    print("\nA) Test Association between volatile acidity and Wine Quality")
+    print("\nB) Test Association between Fixed Acidity and Wine Quality")
+    print("\nC) Test Association between Alcohol and Wine Quality")
+    print("\nD) Test Association between Residual Sugar and Wine Quality")
+     
+    menu_option4 = input("\nPlease select an option to continue: ")
+    menu_option4 = menu_option4.lower()
+     
+    if menu_option4 == "a":
+     AssociationWhite(charX = "quality", charY = "volatile acidity")
+    if menu_option4 == "b":
+     AssociationWhite(charX = "quality", charY = "fixed acidity")
+    if menu_option4 == "c":
+     AssociationWhite(charX = "quality", charY = "alcohol")
+    if menu_option4 == "d":
+     AssociationWhite(charX = "quality", charY = "residual sugar")
+
+def AssRed():
+    print("\nA) Test Association between volatile acidity and Wine Quality")
+    print("\nB) Test Association between Fixed Acidity and Wine Quality")
+    print("\nC) Test Association between Alcohol and Wine Quality")
+    print("\nD) Test Association between Residual Sugar and Wine Quality")
+     
+    menu_option4 = input("\nPlease select an option to continue: ")
+    menu_option4 = menu_option4.lower()
+     
+    if menu_option4 == "a":
+     AssociationRed(charX = "quality", charY = "volatile acidity")
+    if menu_option4 == "b":
+     AssociationRed(charX = "quality", charY = "fixed acidity")
+    if menu_option4 == "c":
+     AssociationRed(charX = "quality", charY = "alcohol")
+    if menu_option4 == "d":
+     AssociationRed(charX = "quality", charY = "residual sugar")
+     
+def FreqWhite():
+    print("\nA) Test Frequency between volatile acidity and Wine Quality")
+    print("\nB) Test Frequency between Fixed Acidity and Wine Quality")
+    print("\nC) Test Frequency between Alcohol and Wine Quality")
+    print("\nD) Test Frequency between Residual Sugar and Wine Quality")
+     
+    menu_option4 = input("\nPlease select an option to continue: ")
+    menu_option4 = menu_option4.lower()
+     
+    if menu_option4 == "a":
+     print("Only numbers between 0.8 and 1.1 will return results (rounded to the nearest tenth)")        
+     testFreqWhite(WineCharTest = "volatile acidity")
+    if menu_option4 == "b":
+     print("Only numbers between 3.8 and 14.2 will return results (rounded to the nearest tenth)")
+     testFreqWhite(WineCharTest = "fixed acidity")
+    if menu_option4 == "c":
+     print("Only numbers between 8.0 and 14.2 will return results (rounded to the nearest tenth)")        
+     testFreqWhite(WineCharTest = "alcohol")
+    if menu_option4 == "d":
+     print("Only numbers between 0.6 and 65.8 will return results (rounded to the nearest tenth)")        
+     testFreqWhite(WineCharTest = "residual sugar")
+
+def FreqRed():
+    print("\nA) Test Frequency between volatile acidity and Wine Quality")
+    print("\nB) Test Frequency between Fixed Acidity and Wine Quality")
+    print("\nC) Test Frequency between Alcohol and Wine Quality")
+    print("\nD) Test Frequency between Residual Sugar and Wine Quality")
+     
+    menu_option4 = input("\nPlease select an option to continue: ")
+    menu_option4 = menu_option4.lower()
+     
+    if menu_option4 == "a":
+     print("Only numbers between 0.12 and 1.58 will return results (rounded to the nearest hundreth)")                
+     testFreqRed(WineCharTest = "volatile acidity")
+    if menu_option4 == "b":
+     print("Only numbers between 4.6 and 15.9 will return results (rounded to the nearest tenth)")                
+     testFreqRed(WineCharTest = "fixed acidity")
+    if menu_option4 == "c":
+     print("Only numbers between 8.4 and 14.9 will return results (rounded to the nearest tenth)")                
+     testFreqRed(WineCharTest = "alcohol")
+    if menu_option4 == "d":
+     print("Only numbers between 0.9 and 15.5 will return results (rounded to the nearest tenth)")                
+     testFreqRed(WineCharTest = "residual sugar")
+          
+if __name__ == "__main__":
+     StartOptions()
