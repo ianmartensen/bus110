@@ -66,11 +66,14 @@ def testFreqRed(WineCharTest):
         
         seaborn.distplot(WineCharValueDataset, bins = 10, kde=False)
         
-        plt.title(WineChar + " value " + str(WineCharValue) + " frequencies by " + WineChar2)
+        plt.title(WineChar.title() + " Value " + str(WineCharValue) + " Frequencies By " + WineChar2.title())
         
         plt.ylabel('Number of Wines')
         
+        plt.xlabel("Quality \n\nLow = 1-3, Medium = 4-6, High = 7-10")
+        
         plt.xticks([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        
     
     except (KeyError, ZeroDivisionError) as e:
         print (e)
@@ -91,13 +94,13 @@ def testFreqWhite(WineCharTest):
         
         seaborn.distplot(WineCharValueDataset, bins = 10, kde=False)
         
-        plt.title(WineChar + " value " + str(WineCharValue) + " frequencies by " + WineChar2)
+        plt.title(WineChar.title() + " Value " + str(WineCharValue) + " Frequencies By " + WineChar2.title())
         
         plt.ylabel('Number of Wines')
         
-        plt.xticks([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        plt.xlabel("Quality \n\nLow = 1-3, Medium = 4-6, High = 7-10")
         
-        print("\nThe quality of your wine is: ")
+        plt.xticks([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     
     except (KeyError, ZeroDivisionError) as e:
         print (e)
