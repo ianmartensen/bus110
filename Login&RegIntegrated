@@ -11,7 +11,7 @@ from pylab import savefig
 import sqlite3
 
 # create connection with database
-conn = sqlite3.connect('C:/Users/Michael/PycharmProjects/bus110project/LeVinEmployee.db') #Insert with your location of database
+conn = sqlite3.connect('C:/Users/Ian/Desktop/LoginForm/LeVinEmployee.db') #Insert with your location of database
 
 def login():
     user_email = input("What is your Email? ")
@@ -173,7 +173,7 @@ def AssociationRed(charX, charY):
       getCorr = scipy.stats.pearsonr(red[WineCharX], red[WineCharY])
       correlation = str(getCorr[0])
       pValue = str(getCorr[1])
-      print("For red wine, the correlationbetween " + WineCharX + " and " + WineCharY + " is " + correlation)
+      print("For red wine, the correlation between " + WineCharX + " and " + WineCharY + " is " + correlation)
       print("With p value of: " + pValue)
   
       seaborn.lmplot(x=WineCharX, y=WineCharY, data=red)
@@ -296,6 +296,8 @@ def AssWhite():
     print("\nB) Test Association between Fixed Acidity and Wine Quality")
     print("\nC) Test Association between Alcohol and Wine Quality")
     print("\nD) Test Association between Residual Sugar and Wine Quality")
+    print("\nE) Test Association between Free Sulfur Dioxide and Wine Quality")
+    print("\nF) Test Association between Total Sulfur Dioxide and Wine Quality")
      
     menu_option4 = input("\nPlease select an option to continue: ")
     menu_option4 = menu_option4.lower()
@@ -308,12 +310,18 @@ def AssWhite():
      AssociationWhite(charX = "quality", charY = "alcohol")
     if menu_option4 == "d":
      AssociationWhite(charX = "quality", charY = "residual sugar")
+    if menu_option4 == "e":
+     AssociationWhite(charX = "quality", charY = "free sulfur dioxide")
+    if menu_option4 == "f":
+     AssociationWhite(charX = "quality", charY = "total sulfur dioxide")
 
 def AssRed():
     print("\nA) Test Association between volatile acidity and Wine Quality")
     print("\nB) Test Association between Fixed Acidity and Wine Quality")
     print("\nC) Test Association between Alcohol and Wine Quality")
     print("\nD) Test Association between Residual Sugar and Wine Quality")
+    print("\nE) Test Association between Free Sulfur Dioxide and Wine Quality")
+    print("\nF) Test Association between Total Sulfur Dioxide and Wine Quality")
      
     menu_option4 = input("\nPlease select an option to continue: ")
     menu_option4 = menu_option4.lower()
@@ -326,12 +334,17 @@ def AssRed():
      AssociationRed(charX = "quality", charY = "alcohol")
     if menu_option4 == "d":
      AssociationRed(charX = "quality", charY = "residual sugar")
+    if menu_option4 == "e":
+     AssociationRed(charX = "quality", charY = "free sulfur dioxide")
+    if menu_option4 == "e":
+     AssociationRed(charX = "quality", charY = "total sulfur dioxide")
      
 def FreqWhite():
     print("\nA) Test Frequency between volatile acidity and Wine Quality")
     print("\nB) Test Frequency between Fixed Acidity and Wine Quality")
     print("\nC) Test Frequency between Alcohol and Wine Quality")
     print("\nD) Test Frequency between Residual Sugar and Wine Quality")
+    print("\nE) Test Frequency between pH and Wine Quality")
      
     menu_option4 = input("\nPlease select an option to continue: ")
     menu_option4 = menu_option4.lower()
@@ -348,12 +361,15 @@ def FreqWhite():
     if menu_option4 == "d":
      print("Only numbers between 0.6 and 65.8 will return results (rounded to the nearest tenth)")        
      testFreqWhite(WineCharTest = "residual sugar")
+    if menu_option4 == "e":
+     testFreqWhite(WineCharTest = "pH")
 
 def FreqRed():
     print("\nA) Test Frequency between volatile acidity and Wine Quality")
     print("\nB) Test Frequency between Fixed Acidity and Wine Quality")
     print("\nC) Test Frequency between Alcohol and Wine Quality")
     print("\nD) Test Frequency between Residual Sugar and Wine Quality")
+    print("\nE) Test Frequency between pH and Wine Quality")
      
     menu_option4 = input("\nPlease select an option to continue: ")
     menu_option4 = menu_option4.lower()
@@ -370,6 +386,8 @@ def FreqRed():
     if menu_option4 == "d":
      print("Only numbers between 0.9 and 15.5 will return results (rounded to the nearest tenth)")                
      testFreqRed(WineCharTest = "residual sugar")
+    if menu_option4 == "e":
+     testFreqRed(WineCharTest = "pH")
           
 if __name__ == "__main__":
     online = True
