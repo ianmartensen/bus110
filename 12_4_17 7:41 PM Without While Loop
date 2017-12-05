@@ -50,7 +50,7 @@ def login():
                         return print("Welcome " + row[0] + " " + row[1]+ ".", end=' ')
                     
             else:
-                print("Sorry that email does not exist. Please try again.)
+                print("Sorry that email does not exist. Please try again.")
                 login()
                                  
         except ConnectionError:
