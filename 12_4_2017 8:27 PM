@@ -11,7 +11,7 @@ from pylab import savefig
 import sqlite3
 
 # create connection with database
-conn = sqlite3.connect('C:/Users/Ian/Desktop/110aProject/LeVinEmployee.db') #Insert with your location of database
+conn = sqlite3.connect('C:/Users/Ian/Desktop/bus110aproject/LeVinEmployee.db') #Insert with your location of database
 
 def login():
     user_email = input("What is your Email? ")
@@ -168,6 +168,7 @@ def AssociationWhite(charX, charY):
      plt.ylabel(WineCharY)
      plt.title("White Wine: " + WineCharX + " X " + WineCharY)
      savefig("scatterplit1.png")
+     plt.show()
      
      StartOptions()
      
